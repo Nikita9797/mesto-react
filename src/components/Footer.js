@@ -1,10 +1,10 @@
-import React from 'react';
-import './Footer.css';
+import React from "react";
+import "./Footer.css";
 
 function Footer() {
   return (
     <footer className="footer">
-        <p className="footer__copyright">© 2020 Mesto Russia</p>
+      <p className="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
   );
 }
