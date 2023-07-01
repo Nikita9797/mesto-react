@@ -2,36 +2,19 @@ import React from "react";
 import "./Main.css";
 import profilePenIcon from "../images/pen.svg";
 import addButtonPlusIcon from "../images/plus.svg";
-import { api } from "../utils/Api";
 import Card from "./Card";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
-function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
-
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    api
-      .getInitialCards()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+function Main({
+  onEditProfile,
+  onAddPlace,
+  onEditAvatar,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+  cards,
+}) {
+  const userContext = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -39,13 +22,15 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
         <div
           className="profile__image"
           onClick={onEditAvatar}
-          style={{ backgroundImage: `url(${userAvatar})` }}
+          style={{
+            backgroundImage: `url(${userContext && userContext.avatar})`,
+          }}
         >
           <div className="profile__overlay"></div>
         </div>
         <div className="profile__info">
           <div className="profile__info-row">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{userContext && userContext.name}</h1>
             <button
               className="profile__edit-button"
               onClick={onEditProfile}
@@ -58,7 +43,7 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
               />
             </button>
           </div>
-          <p className="profile__status">{userDescription}</p>
+          <p className="profile__status">{userContext && userContext.about}</p>
         </div>
         <button className="add-button" onClick={onAddPlace} type="button">
           <img
@@ -71,7 +56,14 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
       <section className="gallery">
         <ul className="cards">
           {cards.map((item) => (
-            <Card card={item} onCardClick={onCardClick} key={item._id} />
+            <Card
+              card={item}
+              onCardClick={onCardClick}
+              userContext={userContext}
+              onCardLike={onCardLike}
+              onCardDelete={onCardDelete}
+              key={item._id}
+            />
           ))}
         </ul>
       </section>
