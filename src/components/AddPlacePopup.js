@@ -1,7 +1,6 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import PopupInput from "./PopupInput";
-import PopupButton from "./PopupButton";
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const [name, setName] = React.useState("");
@@ -23,6 +22,11 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     });
   }
 
+  React.useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
+
   return (
     <PopupWithForm
       title="Новое место"
@@ -38,6 +42,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="text"
         name="name"
         id="title-input"
+        value={name}
         placeholder="Название"
       />
       <PopupInput
@@ -47,9 +52,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="url"
         name="link"
         id="url-input"
+        value={link}
         placeholder="Ссылка на картинку"
       />
-      <PopupButton title="Сохранить" />
+      <button type="submit" className="popup__button">
+        Сохранить
+      </button>
     </PopupWithForm>
   );
 }

@@ -4,7 +4,6 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
-import PopupButton from "./PopupButton";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -176,7 +175,9 @@ function App() {
           name="delete-card-form"
           onClose={() => closeAllPopups()}
         >
-          <PopupButton title="Да" />
+          <button type="submit" className="popup__button">
+            Да
+          </button>
         </PopupWithForm>
 
         <EditAvatarPopup

@@ -1,7 +1,6 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import PopupInput from "./PopupInput";
-import PopupButton from "./PopupButton";
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
   const inputRef = React.useRef("");
@@ -32,7 +31,9 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         inputRef={inputRef}
       />
 
-      <PopupButton title="Сохранить" />
+      <button type="submit" className="popup__button">
+        Сохранить
+      </button>
     </PopupWithForm>
   );
 }

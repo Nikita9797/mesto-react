@@ -5,19 +5,19 @@ class Api {
   }
 
   getUserInfo() {
-    return fetch("https://nomoreparties.co/v1/cohort-66/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then((res) => this._getResponseData(res));
   }
 
   getInitialCards() {
-    return fetch("https://nomoreparties.co/v1/cohort-66/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then((res) => this._getResponseData(res));
   }
 
   setUserInfo(name, about) {
-    return fetch("https://nomoreparties.co/v1/cohort-66/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -28,7 +28,7 @@ class Api {
   }
 
   addNewCard(name, link) {
-    return fetch("https://mesto.nomoreparties.co/v1/cohort-66/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -39,46 +39,34 @@ class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(
-      `https://mesto.nomoreparties.co/v1/cohort-66/cards/${cardId}`,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    ).then((res) => this._getResponseData(res));
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => this._getResponseData(res));
   }
 
   likeCard(cardId) {
-    return fetch(
-      `https://mesto.nomoreparties.co/v1/cohort-66/cards/${cardId}/likes`,
-      {
-        method: "PUT",
-        headers: this._headers,
-      }
-    ).then((res) => this._getResponseData(res));
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then((res) => this._getResponseData(res));
   }
 
   likeCardDelete(cardId) {
-    return fetch(
-      `https://mesto.nomoreparties.co/v1/cohort-66/cards/${cardId}/likes`,
-      {
-        method: "DELETE",
-        headers: this._headers,
-      }
-    ).then((res) => this._getResponseData(res));
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then((res) => this._getResponseData(res));
   }
 
   setAvatar(src) {
-    return fetch(
-      "https://mesto.nomoreparties.co/v1/cohort-66/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: this._headers,
-        body: JSON.stringify({
-          avatar: src,
-        }),
-      }
-    ).then((res) => this._getResponseData(res));
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: src,
+      }),
+    }).then((res) => this._getResponseData(res));
   }
 
   _getResponseData(res) {

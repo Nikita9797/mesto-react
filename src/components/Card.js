@@ -1,8 +1,10 @@
 import React from "react";
 import "./Card.css";
 import cardTrashIcon from "../images/trash.svg";
+import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
-function Card({ card, onCardClick, userContext, onCardLike, onCardDelete }) {
+function Card({ card, onCardClick, onCardLike, onCardDelete }) {
+  const userContext = React.useContext(CurrentUserContext);
   const isOwn = card.owner._id === userContext._id;
   const isLiked = card.likes.some((item) => item._id === userContext._id);
   const cardLikeButtonClassName = `card__like ${

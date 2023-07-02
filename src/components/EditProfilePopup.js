@@ -1,7 +1,6 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 import PopupInput from "./PopupInput";
-import PopupButton from "./PopupButton";
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
@@ -29,7 +28,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   React.useEffect(() => {
     setName(currentUser && currentUser.name);
     setDescription(currentUser && currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, isOpen]);
 
   return (
     <PopupWithForm
@@ -59,7 +58,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         value={description ? description : ""}
         placeholder="Введите профессию"
       />
-      <PopupButton title="Сохранить" />
+      <button type="submit" className="popup__button">
+        Сохранить
+      </button>
     </PopupWithForm>
   );
 }
