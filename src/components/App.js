@@ -174,11 +174,8 @@ function App() {
           title="Вы уверены?"
           name="delete-card-form"
           onClose={() => closeAllPopups()}
-        >
-          <button type="submit" className="popup__button">
-            Да
-          </button>
-        </PopupWithForm>
+          buttonText="Да"
+        ></PopupWithForm>
 
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}

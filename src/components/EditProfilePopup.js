@@ -37,6 +37,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText="Сохранить"
     >
       <PopupInput
         onChange={handleName}
@@ -58,9 +59,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         value={description ? description : ""}
         placeholder="Введите профессию"
       />
-      <button type="submit" className="popup__button">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

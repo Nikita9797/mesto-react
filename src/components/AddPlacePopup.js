@@ -34,6 +34,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText="Сохранить"
     >
       <PopupInput
         onChange={handleName}
@@ -55,9 +56,6 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         value={link}
         placeholder="Ссылка на картинку"
       />
-      <button type="submit" className="popup__button">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }

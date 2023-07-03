@@ -20,6 +20,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText="Сохранить"
     >
       <PopupInput
         minLength=""
@@ -30,10 +31,6 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar }) {
         placeholder="Ссылка на картинку"
         inputRef={inputRef}
       />
-
-      <button type="submit" className="popup__button">
-        Сохранить
-      </button>
     </PopupWithForm>
   );
 }
